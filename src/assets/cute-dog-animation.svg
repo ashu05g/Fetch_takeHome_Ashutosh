@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Dog Body -->
+    <path d="M200 300 Q300 300 350 200 Q380 150 350 100 Q300 50 200 50 Q100 50 50 100 Q20 150 50 200 Q100 300 200 300" 
+          fill="#FCD34D"/>
+    
+    <!-- Ears -->
+    <path d="M120 100 Q100 50 80 80 Q70 100 90 120 Q110 130 120 100" fill="#F59E0B"/>
+    <path d="M280 100 Q300 50 320 80 Q330 100 310 120 Q290 130 280 100" fill="#F59E0B"/>
+    
+    <!-- Face -->
+    <circle cx="160" cy="150" r="15" fill="#1F2937"/> <!-- Left Eye -->
+    <circle cx="240" cy="150" r="15" fill="#1F2937"/> <!-- Right Eye -->
+    
+    <!-- Nose -->
+    <path d="M180 200 Q200 220 220 200 Q200 230 180 200" fill="#1F2937"/>
+    
+    <!-- Mouth -->
+    <path d="M160 220 Q200 260 240 220" stroke="#1F2937" stroke-width="8" fill="none"/>
+    
+    <!-- Tongue -->
+    <path d="M190 240 Q200 260 210 240" fill="#EC4899"/>
+    
+    <!-- Collar -->
+    <path d="M150 270 Q200 290 250 270" stroke="#8B5CF6" stroke-width="12"/>
+    <circle cx="200" cy="280" r="8" fill="#A855F7"/>
+    
+    <!-- Spots -->
+    <circle cx="150" cy="180" r="30" fill="#FBBF24" opacity="0.6"/>
+    <circle cx="250" cy="180" r="25" fill="#FBBF24" opacity="0.6"/>
+</svg> 

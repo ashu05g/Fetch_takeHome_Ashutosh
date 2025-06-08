@@ -1,0 +1,141 @@
+/* General Card Styling */
+.filter-card {
+    background-color: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Section Title */
+  .filter-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f3f4f6;
+  }
+  
+  /* Input Fields */
+  .filter-input {
+    width: 100%;
+    padding: 0.625rem 1rem;
+    background-color: white;
+    border: 1px solid #d1d5db;
+    border-radius: 0.75rem;
+    color: #111827;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+  }
+  
+  .filter-input::placeholder {
+    color: #9ca3af;
+  }
+  
+  .filter-input:focus {
+    outline: none;
+    border-color: #a855f7;
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.2);
+  }
+  
+  /* Breed List Scrollable Container */
+  .breed-scroll {
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    scrollbar-width: thin;
+    scrollbar-color: #a855f7 #e5e7eb;
+  }
+  
+  /* Breed Checkbox Label */
+  .breed-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .breed-label:hover {
+    background-color: #faf5ff;
+  }
+  
+  /* Checkbox Custom Styling */
+  .breed-checkbox {
+    width: 1.125rem;
+    height: 1.125rem;
+    accent-color: #a855f7;
+    border-radius: 0.375rem;
+    border: 1px solid #d1d5db;
+  }
+  
+  /* Breed Name Text */
+  .breed-text {
+    font-size: 1rem;
+    color: #374151;
+  }
+  
+  /* Sort Select */
+  .filter-select {
+    width: 100%;
+    padding: 0.625rem 1rem;
+    background-color: white;
+    border: 1px solid #d1d5db;
+    border-radius: 0.75rem;
+    color: #111827;
+    font-size: 0.875rem;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7' /%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+    transition: all 0.2s ease;
+  }
+  
+  .filter-select:focus {
+    outline: none;
+    border-color: #a855f7;
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.2);
+  }
+  
+  /* Search Button */
+  .search-btn {
+    width: 100%;
+    padding: 0.625rem;
+    background-color: #3b82f6;
+    color: white;
+    border-radius: 0.75rem;
+    transition: all 0.2s ease;
+  }
+  
+  .search-btn:hover {
+    background-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  }
+  
+  /* Find Match Button */
+  .find-match-btn {
+    width: 100%;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    color: white;
+    transition: all 0.2s ease;
+  }
+  
+  .find-match-btn.enabled {
+    background-color: #9333ea;
+  }
+  
+  .find-match-btn.enabled:hover {
+    background-color: #7e22ce;
+  }
+  
+  .find-match-btn.disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+  }
+  
