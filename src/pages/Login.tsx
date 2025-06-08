@@ -19,7 +19,7 @@ const Login = () => {
         try {
             await login(name, email);
             toast.success('Welcome to DogFinder! 🐾');
-            navigate('Fetch_takeHome_Ashutosh/search');
+            navigate('search');
         } catch (error) {
             toast.error('Login failed. Please try again.');
         } finally {
