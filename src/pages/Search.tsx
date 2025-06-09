@@ -313,125 +313,126 @@ const Search = () => {
             <motion.div 
                 initial={{ opacity: 0, x: -20 }} 
                 animate={{ opacity: 1, x: 0 }} 
-                className="col-span-12 sm:col-span-3 mb-2 sm:mb-0 md:sticky"
-                style={{top: 10, zIndex: 20}}
-            >
+                className="col-span-12 sm:col-span-3 mb-2 sm:mb-0"
                 
-                <div className="filter-card">
-                <h2 className="filter-title text-xl font-bold flex items-center justify-center" style={{ fontFamily: "'Borel', cursive" }}>Filters</h2>
+            >
+                <div className="md:sticky md:top-4 z-20">
+                    <div className="filter-card">
+                    <h2 className="filter-title text-xl font-bold flex items-center justify-center" style={{ fontFamily: "'Borel', cursive" }}>Filters</h2>
 
-                {/* Breed Filter Section */}
-                <div className="section">
-                    <label className="section-label">Breed</label>
-                    <div className="relative">
-                    <input
-                        type="text"
-                        placeholder="Search breeds..."
-                        value={searchText}
-                        onChange={(e) => setSearchText(e.target.value)}
-                        className="filter-input focus-purple"
-                    />
-                    <div className="breed-scroll">
-                        <div className="breed-list">
-                        {filteredBreeds.map((breed) => (
-                            <label key={breed} className="breed-label hover:bg-purple">
-                            <input
-                                type="checkbox"
-                                checked={selectedBreeds.includes(breed)}
-                                onChange={() => handleBreedToggle(breed)}
-                                className="breed-checkbox"
-                            />
-                            <span className="breed-text">{breed}</span>
-                            </label>
-                        ))}
+                    {/* Breed Filter Section */}
+                    <div className="section">
+                        <label className="section-label">Breed</label>
+                        <div className="relative">
+                        <input
+                            type="text"
+                            placeholder="Search breeds..."
+                            value={searchText}
+                            onChange={(e) => setSearchText(e.target.value)}
+                            className="filter-input focus-purple"
+                        />
+                        <div className="breed-scroll">
+                            <div className="breed-list">
+                            {filteredBreeds.map((breed) => (
+                                <label key={breed} className="breed-label hover:bg-purple">
+                                <input
+                                    type="checkbox"
+                                    checked={selectedBreeds.includes(breed)}
+                                    onChange={() => handleBreedToggle(breed)}
+                                    className="breed-checkbox"
+                                />
+                                <span className="breed-text">{breed}</span>
+                                </label>
+                            ))}
+                            </div>
+                        </div>
                         </div>
                     </div>
-                    </div>
-                </div>
 
-                {/* Age Range Slider */}
-                <div className="section">
-                    <label className="section-label">Age Range</label>
-                    <div className="age-slider">
-                    <Slider
-                        range
-                        min={0}
-                        max={20}
-                        value={ageRange}
-                        onChange={(value: number | number[]) => setAgeRange(value as number[])}
-                        className="mb-4"
-                        trackStyle={[{ backgroundColor: '#7C3AED' }]}
-                        handleStyle={[
-                        { borderColor: '#7C3AED', backgroundColor: '#7C3AED', boxShadow: '0 0 0 5px rgba(124, 58, 237, 0.12)' },
-                        { borderColor: '#7C3AED', backgroundColor: '#7C3AED', boxShadow: '0 0 0 5px rgba(124, 58, 237, 0.12)' },
-                        ]}
-                        railStyle={{ backgroundColor: '#E5E7EB' }}
-                    />
-                    <div className="slider-range">
-                        <span>{ageRange[0]} years - {ageRange[1]} years</span>
-                        {/* <span>{ageRange[1]} years</span> */}
+                    {/* Age Range Slider */}
+                    <div className="section">
+                        <label className="section-label">Age Range</label>
+                        <div className="age-slider">
+                        <Slider
+                            range
+                            min={0}
+                            max={20}
+                            value={ageRange}
+                            onChange={(value: number | number[]) => setAgeRange(value as number[])}
+                            className="mb-4"
+                            trackStyle={[{ backgroundColor: '#7C3AED' }]}
+                            handleStyle={[
+                            { borderColor: '#7C3AED', backgroundColor: '#7C3AED', boxShadow: '0 0 0 5px rgba(124, 58, 237, 0.12)' },
+                            { borderColor: '#7C3AED', backgroundColor: '#7C3AED', boxShadow: '0 0 0 5px rgba(124, 58, 237, 0.12)' },
+                            ]}
+                            railStyle={{ backgroundColor: '#E5E7EB' }}
+                        />
+                        <div className="slider-range">
+                            <span>{ageRange[0]} years - {ageRange[1]} years</span>
+                            {/* <span>{ageRange[1]} years</span> */}
+                        </div>
+                        </div>
                     </div>
-                    </div>
-                </div>
 
 
-                {/* Search and Map Selector Section */}
-                <div className="search-section">
-                    <input
-                    type="text"
-                    placeholder="Enter zip codes (comma-separated)..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="filter-input flex-grow focus-purple"
-                    />
-                    <button
-                    onClick={() => setIsMapOpen(true)}
-                    className="search-btn w-full mb-2 flex items-center justify-center gap-2"
-                    style={{ backgroundColor: '#7C3AED', color: 'white' }}
-                    >
-                    <span role="img" aria-label="map">🌍</span>
-                    Select Area on Map
-                    </button>
-                    <div className="flex gap-3">
-                        
+                    {/* Search and Map Selector Section */}
+                    <div className="search-section">
+                        <input
+                        type="text"
+                        placeholder="Enter zip codes (comma-separated)..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="filter-input flex-grow focus-purple"
+                        />
                         <button
-                            onClick={handleResetFilters}
-                            disabled={!isDirty}
-                            className="search-btn"
-                            style={{
-                                backgroundColor: isDirty ? '#7425eb' : '#f3f4f6', // gray-200 / gray-100
-                                color: isDirty ? '#1f2937' : '#9ca3af',           // gray-800 / gray-400
-                                cursor: isDirty ? 'pointer' : 'not-allowed'
-                            }}
-                            onMouseEnter={(e) => {
-                                if (isDirty) e.currentTarget.style.backgroundColor = '#7425eb'; // hover gray-300
-                            }}
-                            onMouseLeave={(e) => {
-                                if (isDirty) e.currentTarget.style.backgroundColor = '#7429ff'; // restore gray-200
-                            }}
-                            >
-                            Reset
+                        onClick={() => setIsMapOpen(true)}
+                        className="search-btn w-full mb-2 flex items-center justify-center gap-2"
+                        style={{ backgroundColor: '#7C3AED', color: 'white' }}
+                        >
+                        <span role="img" aria-label="map">🌍</span>
+                        Select Area on Map
                         </button>
+                        <div className="flex gap-3">
+                            
+                            <button
+                                onClick={handleResetFilters}
+                                disabled={!isDirty}
+                                className="search-btn"
+                                style={{
+                                    backgroundColor: isDirty ? '#7425eb' : '#f3f4f6', // gray-200 / gray-100
+                                    color: isDirty ? '#1f2937' : '#9ca3af',           // gray-800 / gray-400
+                                    cursor: isDirty ? 'pointer' : 'not-allowed'
+                                }}
+                                onMouseEnter={(e) => {
+                                    if (isDirty) e.currentTarget.style.backgroundColor = '#7425eb'; // hover gray-300
+                                }}
+                                onMouseLeave={(e) => {
+                                    if (isDirty) e.currentTarget.style.backgroundColor = '#7429ff'; // restore gray-200
+                                }}
+                                >
+                                Reset
+                            </button>
+                            <button
+                                onClick={handleSearch}
+                                className="search-btn hover:bg-blue"
+                                style={{ marginRight: "0.5rem" }}
+                                >
+                                {isLoading ? 'Searching...' : 'Search'}
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Match Button */}
+                    <div>
                         <button
-                            onClick={handleSearch}
-                            className="search-btn hover:bg-blue"
-                            style={{ marginRight: "0.5rem" }}
-                            >
-                            {isLoading ? 'Searching...' : 'Search'}
+                        onClick={handleMatch}
+                        disabled={favorites.length < 2}
+                        className={`find-match-btn ${favorites.length < 2 ? 'disabled' : 'enabled'} hover:bg-purple-dark`}
+                        >
+                        Find Match ({favorites.length} selected)
                         </button>
                     </div>
-                </div>
-
-                {/* Match Button */}
-                <div>
-                    <button
-                    onClick={handleMatch}
-                    disabled={favorites.length < 2}
-                    className={`find-match-btn ${favorites.length < 2 ? 'disabled' : 'enabled'} hover:bg-purple-dark`}
-                    >
-                    Find Match ({favorites.length} selected)
-                    </button>
-                </div>
+                    </div>
                 </div>
             </motion.div>
 
