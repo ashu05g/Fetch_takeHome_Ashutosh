@@ -1,6 +1,6 @@
-# DogFinder - Fetch Frontend Take-Home Exercise Solution 🐾
+# 🐾DogFinder - Fetch Frontend Take-Home Exercise Solution
 
-Live Demo: [DogFinder on GitHub Pages](https://ashutosh-rath02.github.io/Fetch_takeHome_Ashutosh/)
+Live Demo: [DogFinder on GitHub Pages](https://ashu05g.github.io/Fetch_takeHome_Ashutosh/)
 
 This is my solution to the Fetch Frontend Take-Home Exercise. The challenge was to create a web application that helps users search through a database of shelter dogs to find potential adoptions. I've built a modern, responsive application that not only meets all the requirements but also adds several enhanced features for a better user experience.
 
@@ -98,6 +98,26 @@ Implemented all required endpoints:
 - React Hot Toast
 - React Modal
 
+# Screenshots:
+## Login:
+![image](https://github.com/user-attachments/assets/aa16a307-f2ff-4e72-b227-1d6d5e6a296d)
+![image](https://github.com/user-attachments/assets/6d1ca55b-c2b9-4851-84f4-ebbc4c89e18f)
+
+## Home/Search:
+![Screenshot 2025-06-09 031204](https://github.com/user-attachments/assets/d5d8a05b-5b6d-4e9a-8fcb-2157d6dfb587)
+
+## Searching:
+![Screenshot 2025-06-09 031749](https://github.com/user-attachments/assets/406ed0ce-bad4-47a2-9252-b062b0bce6be)
+
+## Select Area on Map:
+![Screenshot 2025-06-09 031836](https://github.com/user-attachments/assets/20698588-d765-4a54-8ab5-0db7571a0d46)
+
+## Select fav:
+![Screenshot 2025-06-09 031918](https://github.com/user-attachments/assets/303d5b98-521f-4f49-a3ad-5d4f25cabba7)
+
+## Match:
+![Screenshot 2025-06-09 031944](https://github.com/user-attachments/assets/8f4673f5-4685-4173-b27d-e98c384d0e5f)
+
 ## Running Locally
 
 ### Prerequisites
@@ -160,4 +180,3 @@ fetch-dogfinder-Take-Home/
 ## Credits
 - OpenStreetMap for map data
 - Fetch API for dog and location data
-- Icons and emojis for enhanced UI
