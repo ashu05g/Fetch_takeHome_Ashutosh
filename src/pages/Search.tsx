@@ -255,7 +255,7 @@ const Search = () => {
         }}
       >
         <h2
-          className="text-5xl bold text-white mb-6"
+          className="text-3xl bold text-black mb-6"
           style={{
             textShadow: '1px 1px 3px rgba(0,0,0,0.3)',
             fontFamily: "'Borel', cursive",
@@ -266,16 +266,16 @@ const Search = () => {
         </h2>
 
         <div
-          className="w-40 h-40 mx-auto mb-6 rounded-xl overflow-hidden shadow-xl"
+          className="w-[60%] mx-auto mb-6 rounded-xl overflow-hidden shadow-xl"
         >
           <img
             src={matchedDog.img}
             alt={matchedDog.name}
-            className="w-60% h-auto object-cover"
+            className="w-full h-auto object-cover"
           />
         </div>
 
-        <p className="text-4xl text-white leading-relaxed" style={{ fontFamily: "'Poppins', sans-serif",fontSize: "1rem" }}>
+        <p className="text-4xl text-black leading-relaxed" style={{ fontFamily: "'Poppins', sans-serif",fontSize: "1rem" }}>
           Heya! I am <strong className="font-semibold" style={{color: '#7C3AED'}}>{matchedDog.name}</strong>, your{' '}
           <strong className="font-semibold" style={{color: '#7C3AED'}}>{matchedDog.age}</strong> years old{' '}
           <strong className="font-semibold" style={{color: '#7C3AED'}}>{matchedDog.breed}</strong>, waiting for you at{' '}
@@ -288,11 +288,11 @@ const Search = () => {
 
 
       <nav className="navbar">
-        <div className="container mx-auto x-4 py-3 flex items-center justify-between">
-            <div className="flex items-center gap-2">
+        <div className="container mx-auto py-2 flex items-center justify-between">
+            <div className="flex items-center gap-1">
             <span role="img" aria-label="paw" style={{ fontSize: 'clamp(1rem, 4vw, 2rem)', marginLeft: "clamp(0.25rem, 1vw, 1rem)" }}>🐾</span>
 
-            <h1 className="text-l md:text-xl font-semibold text-purple-600" style={{ fontSize: "clamp(1rem, 4vw, 2rem)", fontFamily: "'Borel', cursive", paddingTop: "clamp(0.25rem, 1vw, 2rem)", textShadow: "1px 0 currentColor, -1px 0 currentColor",marginBottom: 'clamp(0.25rem, 1vw, 1.5rem)' }}>DogFinder</h1>
+            <h1 className="text-lg md:text-4xl font-semibold text-purple-800" style={{ fontFamily: "'Borel', cursive", paddingTop: "clamp(0.25rem, 1vw, 2rem)", textShadow: "1px 0 currentColor, -1px 0 currentColor" }}>DogFinder</h1>
             </div>
             <div className="flex items-center gap-4">
             <span className="text-sm font-medium text-gray-800" style={{ fontFamily: "'Poppins', sans-serif",fontSize: "clamp(0.75rem, 1vw, 1rem)" }}>Hi, <span style={{ fontWeight: 600, color: '#7C3AED' }}>{user?.name}</span>!</span>
@@ -303,22 +303,22 @@ const Search = () => {
 
 
 
-      <main className="container mx-auto px-6 py-8">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4" style={{ fontSize: "clamp(1.25rem, 4vw, 2.5rem)", fontFamily: "'Borel', cursive", paddingTop: "1rem", textShadow: "1px 0 currentColor, -1px 0 currentColor",marginBottom: "1.5rem" }}>Find Your Perfect Furry Friend</h1>
-          <p className="text-xl text-gray-600 mb-8" style={{ fontSize: "clamp(0.75rem, 1vw, 1rem)", fontFamily: "'Poppins', sans-serif" }}>Browse through our lovely dogs and find your perfect match!</p>
+      <main className="container  mx-auto px-2 py-2">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-2">
+          <h1 className="text-lg md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'Borel', cursive", paddingTop: "1rem" }}>Find Your Perfect Furry Friend</h1>
+          <p className="text-sm md:text-xl text-gray-600 mb-2" style={{ fontFamily: "'Poppins', sans-serif" }}>Browse through our lovely dogs and find your perfect match!</p>
         </motion.div>
         <br/>
-        <div className="grid grid-cols-12 gap-8">
+        <div className="grid grid-cols-12 gap-1">
             <motion.div 
                 initial={{ opacity: 0, x: -20 }} 
                 animate={{ opacity: 1, x: 0 }} 
-                className="col-span-3 min-w-[200px]"
-                style={{ position: 'sticky', top: 10, alignSelf: 'start', zIndex: 20, marginLeft: "1rem", marginRight: "1rem" }}
+                className="col-span-12 sm:col-span-3 mb-2 sm:mb-0 md:sticky"
+                style={{top: 10, zIndex: 20}}
             >
                 
                 <div className="filter-card">
-                <h2 className="filter-title">Filters</h2>
+                <h2 className="filter-title text-xl font-bold flex items-center justify-center" style={{ fontFamily: "'Borel', cursive" }}>Filters</h2>
 
                 {/* Breed Filter Section */}
                 <div className="section">
@@ -407,7 +407,7 @@ const Search = () => {
                                 if (isDirty) e.currentTarget.style.backgroundColor = '#7425eb'; // hover gray-300
                             }}
                             onMouseLeave={(e) => {
-                                if (isDirty) e.currentTarget.style.backgroundColor = '#e5e7eb'; // restore gray-200
+                                if (isDirty) e.currentTarget.style.backgroundColor = '#7429ff'; // restore gray-200
                             }}
                             >
                             Reset
@@ -439,13 +439,13 @@ const Search = () => {
           <motion.div 
             initial={{ opacity: 0, x: 20 }} 
             animate={{ opacity: 1, x: 0 }} 
-            className="col-span-9"
-            style={{ marginRight: "2rem" }}
+            className="col-span-12 sm:col-span-9"
+            
           >
           {dogs.length > 0 && (
-            <div className="flex flex-wrap justify-between items-center gap-4 mb-6 px-4">
+            <div className="flex flex-wrap justify-between items-center gap-4 px-1">
                 {/* Sort Dropdown */}
-                <div style={{ paddingLeft: "1rem" }}>
+                <div>
                 <select
                     value={sortOrder}
                     onChange={(e) => {
@@ -539,15 +539,15 @@ const Search = () => {
 
 
             {/* Dogs Grid */}
-            <div className="grid auto-cols-fr auto-rows-fr gap-x-16 gap-y-16 p-4 pb-8 grid-cols-[repeat(auto-fill,minmax(300px,1fr))] max-w-[1600px]">
+            <div className="grid auto-cols-fr auto-rows-fr gap-x-1 gap-y-1 pb-1 grid-cols-[repeat(auto-fill,minmax(300px,1fr))] max-w-[1600px]">
                 {dogs.map((dog) => (
                     <motion.div
                         key={dog.id}
                         whileHover={{ scale: 1.02 }}
-                        className="dog-card mx-auto w-[90%] bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+                        className="dog-card mx-auto w-[100%] bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
                     >
-                        <div className="p-6">
-                            <div className="aspect-[4/3] relative overflow-hidden rounded-2xl">
+                        <div className="p-2">
+                            <div className="aspect-[4/3] relative overflow-hidden rounded-xl">
                                 <img
                                     src={dog.img}
                                     alt={dog.name}
@@ -555,7 +555,7 @@ const Search = () => {
                                 />
                                 <button
                                 onClick={() => toggleFavorite(dog.id)}
-                                className="absolute top-4 right p-2 rounded-full transition-transform hover:scale-110"
+                                className="absolute top-2 p-2 rounded-2xl transition-transform hover:scale-110"
                                 style={{
                                     right: '0.25rem',
                                     top: '0.25rem',
@@ -564,15 +564,15 @@ const Search = () => {
                                 }}
                                 >
                                 {favorites.includes(dog.id) ? (
-                                    <span role="img" aria-label="favorited" className="text-2xl" style={{ fontSize: "1rem"}}>❤️</span>
+                                    <span role="img" aria-label="favorited" className="text-xl">❤️</span>
                                 ) : (
-                                    <span role="img" aria-label="not favorited" className="text-2xl" style={{ fontSize: "1rem"}}>🤍</span>
+                                    <span role="img" aria-label="not favorited" className="text-xl">🤍</span>
                                 )}
                                 </button>
                             </div>
-                            <div className="mt-6 space-y-6">
-                                <div className="space-y-3">
-                                    <h3 className="font-semibold text-gray-90"style={{ color: '#7C3AED',fontFamily: "'Borel', cursive", fontSize: "1.5rem", marginBottom: "0.25rem" }}>
+                            <div className="mt-4 space-y-2">
+                                <div className="space-y-2">
+                                    <h3 className="font-semibold"style={{ color: '#7C3AED',fontFamily: "'Borel', cursive", fontSize: "1.5rem", marginBottom: "0.25rem" }}>
                                         {dog.name}
                                     </h3>
                                     <p className="text-sm text-gray-600">

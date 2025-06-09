@@ -28,26 +28,27 @@ const Login = () => {
     };
 
     return (
-        <div className="min-h-screen gradient-background flex items-center justify-center p-8">
+        <div className="min-h-screen gradient-background flex items-center justify-center p-2">
             <div className="flex items-center justify-center max-w-6xl ">
                 {/* Left side - Form */}
+                <div className="grid grid-cols-12 gap-1">
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="w-[35%]"
+                    className="col-span-12 sm:col-span-6"
                 >
                     <div className="login-card">
                         <div className="mb-8">
-                            <div className="flex items-center justify-center gap-2 mb-2" style={{ marginBottom: "1rem" }}>
+                            <div className="flex items-center justify-center" style={{ marginBottom: "1rem" }}>
                                 <span role="img" aria-label="paw" className="text-2xl" style={{ fontSize: "2rem" }}>🐾</span>
-                                <h2 className="text-xl font-semibold text-purple-600" style={{fontSize: "2rem" , fontFamily: "'Borel', cursive", paddingTop: "1rem", textShadow: "1px 0 currentColor, -1px 0 currentColor",marginBottom: "1rem" }}>DogFinder</h2>
+                                <h2 className="text-xl font-semibold text-purple-800" style={{fontSize: "2rem" , fontFamily: "'Borel', cursive", paddingTop: "2rem", textShadow: "1px 0 currentColor, -1px 0 currentColor",marginBottom: "1rem" }}>DogFinder</h2>
                             </div>
                             {/* <h1 className="flex items-center justify-center text-3xl font-bold text-gray-900 mb-1">Welcome back!</h1> */}
                             <p className="flex items-center justify-center text-gray-500" style={{ fontFamily: "'Poppins', sans-serif", fontSize: "1rem" }}>Find your perfect furry friend today</p>
                         </div>
 
-                        <form onSubmit={handleSubmit} className="space-y-5 ">
+                        <form onSubmit={handleSubmit} className="space-y-2 ">
                             <div className="form-group flex items-center justify-center">
                                 <label htmlFor="name" className="form-label">
                                     
@@ -60,7 +61,7 @@ const Login = () => {
                                     onChange={(e) => setName(e.target.value)}
                                     required
                                     className="input-primary"
-                                    placeholder="Enter your name"
+                                    placeholder="Enter your name..."
                                 />
                             </div>
                             <br/>
@@ -76,7 +77,7 @@ const Login = () => {
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
                                     className="input-primary"
-                                    placeholder="Enter your email"
+                                    placeholder="Enter your email..."
                                 />
                             </div>
                             <br/>
@@ -105,7 +106,7 @@ const Login = () => {
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="w-[35%]"
+                    className="col-span-12 sm:col-span-6"
                 >
                     <div className="illustration-container">
                         <img 
@@ -115,6 +116,7 @@ const Login = () => {
                         />
                     </div>
                 </motion.div>
+                </div>
             </div>
         </div>
     );
