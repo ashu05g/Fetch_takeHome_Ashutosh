@@ -1,54 +1,163 @@
-# React + TypeScript + Vite
+# DogFinder - Fetch Frontend Take-Home Exercise Solution 🐾
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live Demo: [DogFinder on GitHub Pages](https://ashutosh-rath02.github.io/Fetch_takeHome_Ashutosh/)
 
-Currently, two official plugins are available:
+This is my solution to the Fetch Frontend Take-Home Exercise. The challenge was to create a web application that helps users search through a database of shelter dogs to find potential adoptions. I've built a modern, responsive application that not only meets all the requirements but also adds several enhanced features for a better user experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Exercise Requirements and Implementation
 
-## Expanding the ESLint configuration
+### ✅ Authentication
+- Implemented a login screen that collects user's name and email
+- Integrated with `/auth/login` endpoint for authentication
+- Added secure session management with HttpOnly cookies
+- Implemented logout functionality
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### ✅ Search & Filter Requirements
+- **Breed Filtering**: 
+  - Implemented searchable dropdown with all available breeds
+  - Support for multiple breed selection
+  - Real-time breed search filtering
+  - Integrated with `/dogs/breeds` endpoint
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- **Pagination**:
+  - Efficient pagination with 20 dogs per page
+  - Dynamic page navigation with ellipsis for large result sets
+  - Smooth scrolling between pages
+  - Proper handling of `from` and `size` parameters
+
+- **Sorting**:
+  - Default sorting by breed (alphabetically)
+  - Added sorting options:
+    - Breed (A-Z and Z-A)
+    - Age (Youngest and Oldest)
+  - Implemented using the `sort` parameter with proper field:direction syntax
+
+- **Dog Information Display**:
+  - All fields from the Dog object are displayed:
+    - Name
+    - Breed
+    - Age
+    - Location (zip code)
+    - Image
+  - Attractive card-based layout with hover effects
+
+### ✅ Favorites & Matching
+- Implemented favorite selection with heart icons
+- Visual feedback for selected favorites
+- "Find Match" feature using `/dogs/match` endpoint
+- Celebratory match presentation with confetti animation
+- Requires minimum of 2 favorites for matching
+
+### 🌟 Additional Features
+
+#### 🗺️ Advanced Location Search
+Implemented an interactive map-based location search using the `/locations/search` endpoint:
+
+- Built with Leaflet.js for smooth map interactions
+- Interactive selection rectangle that:
+  - Maintains consistent screen size while zooming
+  - Updates coordinates in real-time
+  - Converts geographic area to zip codes
+- Combines with manual zip code entry
+- Integrates with the main search functionality
+
+#### 💅 Enhanced UI/UX
+- Responsive design for all screen sizes
+- Smooth animations using Framer Motion
+- Loading states and error handling
+- Accessible design with ARIA labels
+- Modern color scheme with purple accents
+
+## Technical Details
+
+### API Integration
+Implemented all required endpoints:
+
+1. **Authentication**:
+   - POST `/auth/login`
+   - POST `/auth/logout`
+
+2. **Dog Data**:
+   - GET `/dogs/breeds`
+   - GET `/dogs/search`
+   - POST `/dogs`
+   - POST `/dogs/match`
+
+3. **Location Services**:
+   - POST `/locations/search`
+   - POST `/locations`
+
+### Tech Stack
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+- Framer Motion
+- Leaflet.js
+- React Query
+- React Hot Toast
+- React Modal
+
+## Running Locally
+
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
+
+### Installation Steps
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ashutosh-rath02/Fetch_takeHome_Ashutosh.git
+   cd Fetch_takeHome_Ashutosh
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open your browser and navigate to:
+   ```bash
+   http://localhost:5173/Fetch_takeHome_Ashutosh
+   ```
+
+### Environment Setup
+No additional environment variables are required as the API endpoints are preconfigured.
+
+## Project Structure
+```
+fetch-dogfinder-Take-Home/
+├── src/
+│   ├── components/
+│   │   └── MapSelector/
+│   │       ├── MapSelector.tsx
+│   │       └── MapSelector.css
+│   ├── pages/
+│   │   ├── Login.tsx
+│   │   └── Search.tsx
+│   ├── services/
+│   │   └── api.ts
+│   ├── context/
+│   │   └── AuthContext.tsx
+│   └── types/
+│       └── index.ts
+├── public/
+└── package.json
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Future Enhancements
+- Save favorites to local storage for persistence
+- Add more detailed dog information views
+- Implement user profiles and preferences
+- Add sharing functionality for matched dogs
+- Enhance map selection with shape drawing tools
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Credits
+- OpenStreetMap for map data
+- Fetch API for dog and location data
+- Icons and emojis for enhanced UI
