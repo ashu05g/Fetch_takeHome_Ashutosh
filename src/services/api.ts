@@ -38,6 +38,40 @@ interface SearchFilters {
     from?: number;
 }
 
+interface LocationSearchParams {
+    city?: string;
+    states?: string[];
+    geoBoundingBox?: {
+        top?: number;
+        left?: number;
+        bottom?: number;
+        right?: number;
+        bottom_left?: {
+            lat: number;
+            lon: number;
+        };
+        top_right?: {
+            lat: number;
+            lon: number;
+        };
+        bottom_right?: {
+            lat: number;
+            lon: number;
+        };
+        top_left?: {
+            lat: number;
+            lon: number;
+        };
+    };
+    size?: number;
+    from?: number;
+}
+
+interface LocationSearchResponse {
+    results: Location[];
+    total: number;
+}
+
 export const api = {
     login: async (name: string, email: string): Promise<LoginResponse> => {
         const response = await fetch(`${BASE_URL}/auth/login`, {
@@ -153,7 +187,24 @@ export const api = {
 
         const data = await response.json();
         return data.match;
-    }
+    },
+
+    searchLocations: async (params: LocationSearchParams): Promise<LocationSearchResponse> => {
+        const response = await fetch(`${BASE_URL}/locations/search`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify(params),
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to search locations');
+        }
+
+        return response.json();
+    },
 };
 
 export type { Dog, SearchFilters, Location, SearchResponse }; 

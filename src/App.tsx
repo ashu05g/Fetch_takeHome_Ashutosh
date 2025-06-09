@@ -1,9 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import Login from './pages/Login';
 import Search from './pages/Search';
+import MapTest from './pages/MapTest';
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => {
                     <Routes>
                         <Route path="Fetch_takeHome_Ashutosh/" element={<Login />} />
                         <Route path="Fetch_takeHome_Ashutosh/search" element={<Search />} />
+                        <Route path="Fetch_takeHome_Ashutosh/map-test" element={<MapTest />} />
                         {/* Add more routes here as we create them */}
                     </Routes>
                 </Router>

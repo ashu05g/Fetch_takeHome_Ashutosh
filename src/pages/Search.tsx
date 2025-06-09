@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import ReactConfetti from 'react-confetti';
 import Modal from 'react-modal';
 import Slider from 'rc-slider';
+import MapSelector from '../components/MapSelector/MapSelector';
 import 'rc-slider/assets/index.css';
 
 // Set the app element for accessibility
@@ -33,6 +34,7 @@ const Search = () => {
   const DOGS_PER_PAGE = 20;
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const [isMapOpen, setIsMapOpen] = useState(false);
 
   useEffect(() => {
     const fetchBreeds = async () => {
@@ -55,7 +57,7 @@ const Search = () => {
     setIsLoading(true);
     try {
       const zipCodesArray = searchQuery
-        .split(',')
+        .split(/[\s,]+/)
         .map(zip => zip.trim())
         .filter(zip => zip.length > 0);
 
@@ -113,7 +115,7 @@ const Search = () => {
     try {
       await api.logout();
       await logout();
-      navigate('/');
+      navigate('/Fetch_takeHome_Ashutosh/');
     } catch {
       toast.error('Failed to logout');
     }
@@ -173,6 +175,16 @@ const Search = () => {
     setIsModalOpen(false);
     setShowConfetti(false);
     setMatchedDog(null);
+  };
+
+  const handleZipCodesSelected = (zipCodes: string[]) => {
+    // Combine existing zip codes with new ones from the map
+    const currentZipCodes = searchQuery.split(',').map(zip => zip.trim()).filter(zip => zip.length > 0);
+    const combinedZipCodes = [...new Set([...currentZipCodes, ...zipCodes])]; // Remove duplicates
+    setSearchQuery(combinedZipCodes.join(','));
+    
+    // Automatically trigger search with new zip codes
+    //searchDogs(1);
   };
 
   return (
@@ -276,14 +288,14 @@ const Search = () => {
 
 
       <nav className="navbar">
-        <div className="container mx-auto flex items-center justify-between">
+        <div className="container mx-auto x-4 py-3 flex items-center justify-between">
             <div className="flex items-center gap-2">
-            <span role="img" aria-label="paw" style={{ fontSize: "2rem", marginLeft: "1rem" }}>🐾</span>
+            <span role="img" aria-label="paw" style={{ fontSize: 'clamp(1rem, 4vw, 2rem)', marginLeft: "clamp(0.25rem, 1vw, 1rem)" }}>🐾</span>
 
-            <h1 className="text-xl font-semibold text-purple-600" style={{ fontFamily: "'Borel', cursive", paddingTop: "1rem", textShadow: "1px 0 currentColor, -1px 0 currentColor",marginBottom: "1.5rem" }}>DogFinder</h1>
+            <h1 className="text-l md:text-xl font-semibold text-purple-600" style={{ fontSize: "clamp(1rem, 4vw, 2rem)", fontFamily: "'Borel', cursive", paddingTop: "clamp(0.25rem, 1vw, 2rem)", textShadow: "1px 0 currentColor, -1px 0 currentColor",marginBottom: 'clamp(0.25rem, 1vw, 1.5rem)' }}>DogFinder</h1>
             </div>
             <div className="flex items-center gap-4">
-            <span className="text-sm font-medium text-gray-800" style={{ fontFamily: "'Poppins', sans-serif",fontSize: "1rem" }}>Hi, <span style={{ fontWeight: 600, color: '#7C3AED' }}>{user?.name}</span>!</span>
+            <span className="text-sm font-medium text-gray-800" style={{ fontFamily: "'Poppins', sans-serif",fontSize: "clamp(0.75rem, 1vw, 1rem)" }}>Hi, <span style={{ fontWeight: 600, color: '#7C3AED' }}>{user?.name}</span>!</span>
             <button onClick={handleLogout} className="btn-secondary">Logout</button>
             </div>
         </div>
@@ -293,16 +305,16 @@ const Search = () => {
 
       <main className="container mx-auto px-6 py-8">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'Borel', cursive", paddingTop: "1rem", textShadow: "1px 0 currentColor, -1px 0 currentColor",marginBottom: "1.5rem" }}>Find Your Perfect Furry Friend</h1>
-          <p className="text-xl text-gray-600 mb-8" style={{ fontFamily: "'Poppins', sans-serif",fontSize: "1rem" }}>Browse through our lovely dogs and find your perfect match!</p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4" style={{ fontSize: "clamp(1.25rem, 4vw, 2.5rem)", fontFamily: "'Borel', cursive", paddingTop: "1rem", textShadow: "1px 0 currentColor, -1px 0 currentColor",marginBottom: "1.5rem" }}>Find Your Perfect Furry Friend</h1>
+          <p className="text-xl text-gray-600 mb-8" style={{ fontSize: "clamp(0.75rem, 1vw, 1rem)", fontFamily: "'Poppins', sans-serif" }}>Browse through our lovely dogs and find your perfect match!</p>
         </motion.div>
         <br/>
         <div className="grid grid-cols-12 gap-8">
             <motion.div 
                 initial={{ opacity: 0, x: -20 }} 
                 animate={{ opacity: 1, x: 0 }} 
-                className="col-span-3"
-                style={{ position: 'sticky', top: 10, alignSelf: 'start', zIndex: 20 }}
+                className="col-span-3 min-w-[200px]"
+                style={{ position: 'sticky', top: 10, alignSelf: 'start', zIndex: 20, marginLeft: "1rem", marginRight: "1rem" }}
             >
                 
                 <div className="filter-card">
@@ -363,7 +375,7 @@ const Search = () => {
                 </div>
 
 
-                {/* Search and Match Buttons */}
+                {/* Search and Map Selector Section */}
                 <div className="search-section">
                     <input
                     type="text"
@@ -372,6 +384,14 @@ const Search = () => {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="filter-input flex-grow focus-purple"
                     />
+                    <button
+                    onClick={() => setIsMapOpen(true)}
+                    className="search-btn w-full mb-2 flex items-center justify-center gap-2"
+                    style={{ backgroundColor: '#7C3AED', color: 'white' }}
+                    >
+                    <span role="img" aria-label="map">🌍</span>
+                    Select Area on Map
+                    </button>
                     <div className="flex gap-3">
                         
                         <button
@@ -416,7 +436,12 @@ const Search = () => {
             </motion.div>
 
 
-          <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="col-span-9">
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }} 
+            animate={{ opacity: 1, x: 0 }} 
+            className="col-span-9"
+            style={{ marginRight: "2rem" }}
+          >
           {dogs.length > 0 && (
             <div className="flex flex-wrap justify-between items-center gap-4 mb-6 px-4">
                 {/* Sort Dropdown */}
@@ -514,12 +539,12 @@ const Search = () => {
 
 
             {/* Dogs Grid */}
-            <div className="grid auto-cols-fr auto-rows-fr gap-x-8 gap-y-16 p-4 pb-8 grid-cols-[repeat(auto-fill,minmax(300px,1fr))] max-w-[1600px] mx-auto">
+            <div className="grid auto-cols-fr auto-rows-fr gap-x-16 gap-y-16 p-4 pb-8 grid-cols-[repeat(auto-fill,minmax(300px,1fr))] max-w-[1600px]">
                 {dogs.map((dog) => (
                     <motion.div
                         key={dog.id}
                         whileHover={{ scale: 1.02 }}
-                        className="dog-card mx-auto w-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+                        className="dog-card mx-auto w-[90%] bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
                     >
                         <div className="p-6">
                             <div className="aspect-[4/3] relative overflow-hidden rounded-2xl">
@@ -633,6 +658,13 @@ const Search = () => {
           </motion.div>
         </div>
       </main>
+
+      {/* Add MapSelector component */}
+      <MapSelector
+        isOpen={isMapOpen}
+        onClose={() => setIsMapOpen(false)}
+        onZipCodesSelected={handleZipCodesSelected}
+      />
     </div>
   );
 };
